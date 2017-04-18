@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list = ls())\n\n# install.packages(\"readxl\", dependencies = T)\nlibrary(readxl)\n\n## Set working directory\n# getwd() set to the project file\nsetwd(paste(getwd(), \"/Inference/EmployeeRetention\", sep = \"\"))\n\n## Import data and create binary classes for target variables\ndata <- read_excel(\"../DataRepo.xlsx\", \"EmployeeRetenion\")\nalpha <- 0.05\n\n## Null Hypothesis:\n## Mean years at PLE of male employees equal to mean years at PLE of female employees\n\n## Create vectors of data to compare \nyears.m <- subset(data, Gender==\"M\")[ ,1]\nyears.f <- subset(data, Gender==\"F\")[ ,1]\n\n## Compute T-stat paramters\nn <- length(years.m)  # Sample size\nmu.m <- mean(years.m)  # Sample mean\nmu.f <- mean(years.f)  # Hypothesized mean\ns.m <- sd(years.m)  # Sample StDev\n\n## T-Stats\nt.gender <- (mu.m - mu.f) / (s.m / sqrt(n))\nt.half.alpha <- qt(1 - alpha / 2, df = n - 1)\n\n## Test Hypothesis with Critical Values and P-Value\ncriticalVals <- c(-t.half.alpha, t.half.alpha)\npVal.gender <- 2 * pt(t.gender, df = n - 1)\n\n## Should we Reject?\nt.gender < criticalVals[1] || t.gender > criticalVals[2]  # TRUE\npVal.gender <= alpha  # TRUE\n\n## Conclusion:\n## Both solutions verify that the null hypothesis cannot be rejected\n",
+    "created" : 1492523795866.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1142026763",
+    "id" : "F80C178B",
+    "lastKnownWriteTime" : 1492525482,
+    "last_content_update" : 1492525482662,
+    "path" : "C:/Users/yalot/OneDrive/WM/Business Classes/BUAD467 Applied Predictive Analytics/Assignment03/Inference/EmployeeRetention/genderYearsPLE.R",
+    "project_path" : "Inference/EmployeeRetention/genderYearsPLE.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

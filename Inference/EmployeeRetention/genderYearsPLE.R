@@ -3,9 +3,12 @@ rm(list = ls())
 # install.packages("readxl", dependencies = T)
 library(readxl)
 
-# excel_sheets("DataRepo.xlsx")
+## Set working directory
+# getwd() set to the project file
+setwd(paste(getwd(), "/Inference/EmployeeRetention", sep = ""))
+
 ## Import data and create binary classes for target variables
-data <- read_excel("DataRepo.xlsx", "EmployeeRetenion")
+data <- read_excel("../DataRepo.xlsx", "EmployeeRetenion")
 alpha <- 0.05
 
 ## Null Hypothesis:
@@ -29,8 +32,9 @@ t.half.alpha <- qt(1 - alpha / 2, df = n - 1)
 criticalVals <- c(-t.half.alpha, t.half.alpha)
 pVal.gender <- 2 * pt(t.gender, df = n - 1)
 
-t.gender > criticalVals[1] & t.gender < criticalVals[2]  # TRUE
-pVal.gender >= alpha  # TRUE
+## Should we Reject?
+t.gender < criticalVals[1] || t.gender > criticalVals[2]  # TRUE
+pVal.gender <= alpha  # TRUE
 
 ## Conclusion:
 ## Both solutions verify that the null hypothesis cannot be rejected

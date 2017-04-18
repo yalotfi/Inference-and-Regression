@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list = ls())\n\n# install.packages(\"readxl\", dependencies = T)\nlibrary(readxl)\n\n## Set working directory\n# getwd() set to the project file\nsetwd(paste(getwd(), \"/Inference/EmployeeRetention\", sep = \"\"))\n\n## Import data and create binary classes for target variables\ndata <- read_excel(\"../DataRepo.xlsx\", \"EmployeeRetenion\")\nnames(data)[6] <- \"CollegeGrad\"\nalpha <- 0.05\n\n## Null Hypothesis:\n# The mean years at PLE for college grads is equal to the mean years\n# at PLE for non-college grads.\n\n## Create Vectors\nyears.eduY <- subset(data, CollegeGrad==\"Y\")[ ,1]\nyears.eduN <- subset(data, CollegeGrad==\"N\")[ ,1]\n\n## Compute T-stat paramters\nn <- length(years.eduY)  # Sample size\nmu.edyY <- mean(years.eduY)  # Sample mean\nmu.eduN <- mean(years.eduN)  # Hypothesized mean\ns.eduY <- sd(years.eduY)  # Sample StDev\n\n## T-Stats\nt.grad <- (mu.edyY - mu.eduN) / (s.eduY / sqrt(n))\nt.half.alpha <- qt(1 - alpha / 2, df = n - 1)\n\n## Test Hypothesis with Critical Values and P-Value\ncriticalVals <- c(-t.half.alpha, t.half.alpha)\npVal.grad <- 2 * pt(t.grad, df = n - 1)\n\n## Should we Reject?\nt.grad < criticalVals[1] || t.grad > criticalVals[2]  # TRUE\npVal.grad <= alpha  # TRUE\n\n## Conclusion:\n## Both solutions verify that the null hypothesis cannot be rejected\n",
+    "created" : 1492523794783.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1606474524",
+    "id" : "2EB5CF53",
+    "lastKnownWriteTime" : 1492525484,
+    "last_content_update" : 1492525484987,
+    "path" : "C:/Users/yalot/OneDrive/WM/Business Classes/BUAD467 Applied Predictive Analytics/Assignment03/Inference/EmployeeRetention/educationYearsPLE.R",
+    "project_path" : "Inference/EmployeeRetention/educationYearsPLE.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
