@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list = ls())\n\n# install.packages(\"readxl\", dependencies = T)\nlibrary(readxl)\n\n## Set working directory\n# getwd() set to the project file when opened\n# setwd(paste(getwd(), \"/Regression\", sep = \"\"))  # move into regression folder\n\n## Import data and create binary classes for target variables\ndata <- read_excel(\"DataRegression.xlsx\", \"Defects\")\n\n## Run Descriptive Stats\n## Check missing values, out of range values, and categorical variables\n\n## Generate Histograms for Continuous Variables\n\n## Create scatter plots between predicted variable and predictors (DV and IVs)\n\n## Run Regression\n\n## Assess Regression\n\n## Re-create the model",
+    "created" : 1492531701552.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1279548516",
+    "id" : "8F71BFB8",
+    "lastKnownWriteTime" : 1492532375,
+    "last_content_update" : 1492532375141,
+    "path" : "C:/Users/yalot/OneDrive/WM/Business Classes/BUAD467 Applied Predictive Analytics/Assignment03/Regression/predictDefects.R",
+    "project_path" : "Regression/predictDefects.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

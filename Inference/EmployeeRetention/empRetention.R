@@ -5,10 +5,12 @@ library(readxl)
 
 # excel_sheets("DataRepo.xlsx")
 ## Import data and create binary classes for target variables
-data <- read_excel("DataRepo.xlsx", "EmployeeRetenion")
+data <- read_excel("../DataRepo.xlsx", "EmployeeRetenion")
 data$gender_bin <- ifelse(data$Gender == "F", 1, 0)
 data$grad_bin <- ifelse(data$'College Grad' == "Y", 1, 0)
 data$local_bin <- ifelse(data$Local == "Y", 1, 0)
+
+write.csv(data, "testRetention.csv")
 
 ## Vectorize for hypothesis testing
 yearsPLE <- c(as.matrix(data[ ,1]))
